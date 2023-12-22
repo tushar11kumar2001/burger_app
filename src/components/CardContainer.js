@@ -2,7 +2,7 @@ import Card from "./Card";
 
 import { useState, useEffect } from "react";
 import Shimmar from "./Fackcard";
-
+import { Link } from "react-router-dom";
 
 var list;
 const CardContainer = () => {
@@ -77,7 +77,7 @@ setcopyList(list);
 
 <div className="cardcontainer">
   {copyList.map((resturant) => (
-    <Card key={resturant.info.id} restData={resturant} />
+   <Link to={"/restaurants/"+resturant.info.id} key={resturant.info.id} > <Card restData={resturant} /> </Link>
   ))}
 </div>
 </div>

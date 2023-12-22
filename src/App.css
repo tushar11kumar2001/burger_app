@@ -29,7 +29,7 @@
 .cardbody{
     width: 250px;
     cursor: pointer;
-  
+    border-radius: 10px;
     background-color: rgba(49, 46, 47, 0.284);
     padding: 10px;
 }
@@ -82,4 +82,9 @@ border: 2px solid;
     background-color: white;
     height: 50px;
     margin: 5px;
+}
+
+
+@media  (max-width: 350px){
+  
 }

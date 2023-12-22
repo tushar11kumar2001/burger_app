@@ -6,7 +6,7 @@ const Error = () => {
   return (
     <div>
       <h1>Oop !!</h1>
-      Tumhari maa ki chut
+    
     </div>
   )
 }
