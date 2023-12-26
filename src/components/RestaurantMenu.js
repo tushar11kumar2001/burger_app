@@ -21,7 +21,7 @@ const RestaurantMenu = () => {
   const { name, cuisines, costForTwo, avgRatingString } =
     restInfo?.data?.cards[2]?.card?.card?.info;
   const { itemCards } =
-    restInfo?.data?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card
+    restInfo?.data?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
       ?.card;
   return (
     <>

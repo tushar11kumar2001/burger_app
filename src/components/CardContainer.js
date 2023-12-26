@@ -19,7 +19,7 @@ const CardContainer = () => {
     );
     const  json = await api.json();
     console.log("json = ",json);
-    list = json.data.cards[2].card.card.gridElements.infoWithStyle.restaurants;
+    list = json.data.cards[3].card.card.gridElements.infoWithStyle.restaurants;
     setcardData2(list);
     setcopyList(list);
     console.log(list);
