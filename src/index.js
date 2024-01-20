@@ -9,6 +9,12 @@ import Header from './components/Header';
 import RestaurantMenu from './components/RestaurantMenu';
 import {createBrowserRouter,Outlet,RouterProvider} from 'react-router-dom';
 
+//chunking
+//dynamically bundling
+//code splitting
+//lazy loading
+//on demand loading
+
 const AppLayout = ()=>{
         return (
                 <>

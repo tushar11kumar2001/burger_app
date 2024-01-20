@@ -4,41 +4,59 @@ const Shimmar = ()=>{
    <div className="img"></div>
    <p></p>
    <p></p>
-   <p></p>
-   <p></p>
+
    </div>
    
    <div className="fakecard">
    <div className="img"></div>
    <p></p>
    <p></p>
-   <p></p>
-   <p></p>
+  
    </div>
    
    <div className="fakecard">
    <div className="img"></div>
    <p></p>
    <p></p>
-   <p></p>
-   <p></p>
+ 
    </div>
    
    <div className="fakecard">
    <div className="img"></div>
    <p></p>
    <p></p>
-   <p></p>
-   <p></p>
-   </div>
    
+   </div>
+
    <div className="fakecard">
    <div className="img"></div>
    <p></p>
    <p></p>
-   <p></p>
-   <p></p>
+   
    </div>
+
+   <div className="fakecard">
+   <div className="img"></div>
+   <p></p>
+   <p></p>
+   
+   </div>
+
+   <div className="fakecard">
+   <div className="img"></div>
+   <p></p>
+   <p></p>
+   
+   </div>
+
+   <div className="fakecard">
+   <div className="img"></div>
+   <p></p>
+   <p></p>
+   
+   </div>
+   
+    
    </div>}
    
    

@@ -1,4 +1,4 @@
-import "./App.css";
+
 import CardContainer from "./components/CardContainer";
 // import cardData from "./utils/rest-list";
 

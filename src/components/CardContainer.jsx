@@ -1,11 +1,14 @@
 import Card from "./Card";
-
+import useRestaurantList from "../utils/useRestaurantList";
 import { useState, useEffect } from "react";
 import Shimmar from "./Fackcard";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
-var list;
+
 const CardContainer = () => {
+  // console.log("List " ,   useRestaurantList());
+
   const [cardData2, setcardData2] = useState([]);
   const [searchText , setsearchText] =useState("");
   const [btnName,setbtnName] = useState("LOGIN");
@@ -19,10 +22,10 @@ const CardContainer = () => {
     );
     const  json = await api.json();
     console.log("json = ",json);
-    list = json.data.cards[3].card.card.gridElements.infoWithStyle.restaurants;
-    setcardData2(list);
-    setcopyList(list);
-    console.log(list);
+    
+    setcardData2(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);
+    setcopyList(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);
+    // console.log(list);
   };
   
   //conditional rendering
@@ -34,7 +37,9 @@ const CardContainer = () => {
 //   }
 
 
-  
+  const onlineStatus = useOnlineStatus();
+
+  if(onlineStatus === false) return <h1>You're offline please check your internet connection</h1>
 
 
   return cardData2.length===0? (<Shimmar/>) :(
@@ -44,11 +49,11 @@ const CardContainer = () => {
     <div className="body">
 
 <div className="btnspace">
-  <div>
-  <input type="text" className="searchfield" value={searchText} onChange={
+  <div className="searchfield">
+  <input type="text" className="inputfield" value={searchText} onChange={
     (e)=>{ setsearchText(e.target.value);
   }}/>
-  <button className="bt12" onClick={()=>{
+  <button className="searchbtn" onClick={()=>{
    console.log(searchText);
    const filtersearch = cardData2.filter((res)=> res.info.name.toLowerCase().includes(searchText.toLowerCase()));
     setcopyList(filtersearch);
@@ -65,7 +70,7 @@ const CardContainer = () => {
 >TOP RESTURANT</button>
 
 <button className="btn bt2" onClick={()=>{
-setcopyList(list);
+setcopyList(cardData2);
 }}>Back TO Home</button>
 
 <button className="btn" onClick={()=>{

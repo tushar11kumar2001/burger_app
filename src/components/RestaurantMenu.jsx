@@ -1,27 +1,19 @@
-import { useState, useEffect } from "react";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
 import Shimmar from "./Fackcard";
 import {  useParams } from "react-router-dom";
-import { MenuAPI } from "../utils/constant";
-const RestaurantMenu = () => {
-  const [restInfo, setrestInfo] = useState(null);
-  const {restId} = useParams();
-  console.log("param",restId);
-  useEffect(() => {
-    fetchUrl();
-  }, []);
 
-  const fetchUrl = async () => {
-    const data = await fetch(MenuAPI+restId);
-    const response = await data.json();
-    setrestInfo(response);
-    console.log("menu response ", response);
-  };
+const RestaurantMenu = () => {
+
+  const {restId} = useParams();
+  const restInfo = useRestaurantMenu(restId);
+  console.log("param",restId);
+
 
   if (restInfo === null) return <Shimmar />;
   const { name, cuisines, costForTwo, avgRatingString } =
-    restInfo?.data?.cards[2]?.card?.card?.info;
+    restInfo?.data?.cards[0]?.card?.card?.info;
   const { itemCards } =
-    restInfo?.data?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
+    restInfo?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
       ?.card;
   return (
     <>
