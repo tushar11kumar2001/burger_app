@@ -23,8 +23,8 @@ const CardContainer = () => {
     const  json = await api.json();
     console.log("json = ",json);
     
-    setcardData2(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);
-    setcopyList(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);
+    setcardData2(json.data.cards[2].card.card.gridElements.infoWithStyle.restaurants);
+    setcopyList(json.data.cards[2].card.card.gridElements.infoWithStyle.restaurants);
     // console.log(list);
   };
   
