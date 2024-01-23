@@ -50,7 +50,7 @@ class Userbyclass extends React.Component{
           
             <h2> {name.toUpperCase()}</h2>
             <h3>Location : {location}</h3>
-            <img style = {{width:"200px" , height:"150px"}}src={avatar_url} />
+            <img style = {{width:"160px" , height:"150px"}}src={avatar_url} />
          </div>
         );
     }
