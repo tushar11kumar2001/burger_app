@@ -24,11 +24,12 @@ const CardContainer = () => {
     const json = await api.json();
     console.log("json = ", json);
     // console.log("json.data.cards",json.data.cards)
-    const list =    json?.data?.cards.filter((top)=>('gridElements'in top?.card?.card));
-    console.log("latest list",list);
+    const list =    json?.data?.cards.filter((top)=>(top?.card?.card?.gridElements?.infoWithStyle?.collectionId));
+    // console.log("latest list",list);
     setcardData2(list[0].card.card.gridElements.infoWithStyle.restaurants);
     setcopyList(list[0].card.card.gridElements.infoWithStyle.restaurants);
 
+   
 
   };
 

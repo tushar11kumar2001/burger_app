@@ -21,8 +21,8 @@ const NestedCategory = ({nestedCategories }) => {
          className="flex justify-between items-center text-lg p-2    font-semibold   cursor-pointer "
          onClick={showItems}
        >
-        {cat?.title} {"("+cat.itemCards.length+")"}
-        <i class="fa-solid fa-caret-down"></i>
+        {cat?.title} {"("+cat.itemCards.length+")"} 
+        {!(show) && <i class="fa-solid fa-caret-down"></i>} {show && <i class="fa-solid fa-sort-up"></i>}
          </h1>
      
       

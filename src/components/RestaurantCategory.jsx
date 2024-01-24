@@ -1,40 +1,41 @@
 import ItemCards from "./ItemCards";
-import { useState } from "react";
 import NestedCategory from "./NestedCategory";
 
-const RestaurantCategory = ({data}) => {
-    // console.log("data" , data);
-    const[show,setShow] = useState(false);
-    const showItems = ()=>{
-        setShow(!show);
-        //  console.log("showitems");
-         console.log(show);
-    }
- 
+const RestaurantCategory = ({ data, showItems , setShowIndex}) => {
+  // console.log("data" , data);
+
+  const handleclick = () => {
+     setShowIndex();//By this setShowIndex we can access the setShowIndex function which is present in RestaurantMenu component...(this functionality is known as "LIFTING STATE UP")
+  };
+
   return (
-
-       <>
-    
+    <>
       <div className="p-5 shadow-lg bg-slate-300 mt-5">
-           {/* header */}
-           {
-            data?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"? ( <h1 className="text-lg font-bold flex justify-between items-center p-2 cursor-pointer " onClick={showItems}>{data.title } {"("+data.itemCards.length+")"}  <i class="fa-solid fa-caret-down"></i></h1>):(<h1 className="text-lg font-bold  cursor-pointer " >{data.title }</h1>)
-           }
-       
-       </div>
-        {/**body */}
-        
-             {data?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"? (show &&  <ItemCards itemsList = {data?.itemCards}/>) : (<NestedCategory nestedCategories = {data?.categories}/>)}
+        {/* header */}
+        {data?.["@type"] ===
+        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory" ? (
+          <h1
+            className="text-lg font-bold flex justify-between items-center p-2 cursor-pointer "
+            onClick={handleclick}
+          >
+            {data.title} {"(" + data.itemCards.length + ")"}{" "}
+            {!showItems && <i class="fa-solid fa-caret-down"></i>}
+            {showItems && <i class="fa-solid fa-sort-up"></i>}
+          </h1>
+        ) : (
+          <h1 className="text-lg font-bold  cursor-pointer ">{data.title}</h1>
+        )}
+      </div>
+      {/**body */}
 
-    
-             </>
-      
-    
-
-   
-
-  
+      {data?.["@type"] ===
+      "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory" ? (
+        showItems && <ItemCards itemsList={data?.itemCards} />
+      ) : (
+        <NestedCategory nestedCategories={data?.categories} />
+      )}
+    </>
   );
 };
 
-export default RestaurantCategory
+export default RestaurantCategory;
