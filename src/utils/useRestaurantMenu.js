@@ -9,7 +9,7 @@ import { MenuAPI } from "./constant";
     const fetchURL =  async ()=>{
         const data = await fetch(MenuAPI+restId);
         const json = await data.json();
-        console.log("menu",json);
+        // console.log("menu",json);
         setRestInfo(json);
 ;
     }

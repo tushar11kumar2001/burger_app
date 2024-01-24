@@ -1,35 +1,40 @@
+import { logDOM } from "@testing-library/react";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 import Shimmar from "./Fackcard";
 import {  useParams } from "react-router-dom";
+import RestaurantCategory from "./RestaurantCategory";
 
 const RestaurantMenu = () => {
 
   const {restId} = useParams();
   const restInfo = useRestaurantMenu(restId);
-  console.log("param",restId);
+  // console.log("param",restId);
 
+  
 
   if (restInfo === null) return <Shimmar />;
-  const { name, cuisines, costForTwo, avgRatingString } =
-    restInfo?.data?.cards[0]?.card?.card?.info;
-  const { itemCards } =
-    restInfo?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
-      ?.card;
+  const { name, cuisines,  avgRatingString } = restInfo?.data?.cards[0]?.card?.card?.info;
+ 
+
+  const categories =restInfo?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(c=>c.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory" ||c.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory");
+  // console.log("categories",categories);
+  
+     
   return (
-    <>
-      <h1>{name}</h1>
-      <h2>{cuisines.join(",")}</h2>
-      <h2>{costForTwo}</h2>
-      <h2>{avgRatingString}</h2>
-      <h2>MENU</h2>
-      <ul>
-        {itemCards.map((item) => (
-          <li key={item?.card?.info?.id}>
-            {item?.card?.info?.name} Rs:- {item?.card?.info?.price / 100}
-          </li>
-        ))}
-      </ul>
-    </>
+    <div className="w-4/5 bg-slate-50 mx-auto  ">
+      <div className="flex justify-between  items-baseline border border-orange-300 p-5 ">
+      <div>
+      <h1 className="text-center text-3xl font-bold">{name}</h1>
+      <h2 className="">{cuisines.join(",")}</h2>
+      </div>
+      <h2 className="text-center text-lg flex justify-center items-center ">Rating : {avgRatingString}<i className="fa-solid fa-star text-sm text-lime-700 "></i></h2>
+      </div>
+      {categories.map((category)=>{
+       return(<RestaurantCategory key={category?.card?.card?.title} data={category?.card?.card} />)
+     })}
+     
+ 
+    </div>
   );
 };
 

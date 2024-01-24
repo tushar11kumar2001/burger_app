@@ -22,10 +22,10 @@ const CardContainer = () => {
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.705882&lng=77.2785876&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await api.json();
-    // console.log("json = ", json);
+    console.log("json = ", json);
     // console.log("json.data.cards",json.data.cards)
-    const list =    json.data.cards.filter((top)=>top?.card?.card?.id === "top_brands_for_you");
-    // console.log("latest list",list);
+    const list =    json?.data?.cards.filter((top)=>('gridElements'in top?.card?.card));
+    console.log("latest list",list);
     setcardData2(list[0].card.card.gridElements.infoWithStyle.restaurants);
     setcopyList(list[0].card.card.gridElements.infoWithStyle.restaurants);
 

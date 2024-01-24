@@ -33,16 +33,16 @@ class Userbyclass extends React.Component{
         if(this.state.count !== prevState.count)  console.log("componentDidUpdate")
     }
     componentWillUnmount(){
-        console.log("componentWillUnmount");
+        // console.log("componentWillUnmount");
     }
 
 
     render(){
-        console.log(this.props.name + "children render"); 
+        // console.log(this.props.name + "children render"); 
         
 
        const {name , location , avatar_url}  = this.state.userinfo;
-       const {count}  = this.state;
+      
 
         return (
             < div className="userclass">
