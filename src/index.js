@@ -1,4 +1,4 @@
-import React,  { lazy , Suspense } from 'react';
+import React,  { lazy , Suspense, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
@@ -9,6 +9,9 @@ import Header from './components/Header';
 import RestaurantMenu from './components/RestaurantMenu';
 // import Grocery from './components/Grocery';
 import {createBrowserRouter,Outlet,RouterProvider} from 'react-router-dom';
+import { useState } from 'react';
+import UserContext from './utils/userContext';
+import User from './components/User';
 
 
 //chunking
@@ -18,12 +21,25 @@ import {createBrowserRouter,Outlet,RouterProvider} from 'react-router-dom';
 //on demand loading
 const Grocery = lazy(()=>import("./components/Grocery")); //dynamic loading
 const About = lazy(()=>import("./components/About")); //dynamic loading
+
+
 const AppLayout = ()=>{
+        const[userName,setUserName] = useState(null);
+        //authentication.
+        useEffect(()=>{
+        //api call for user name and info;
+        const data ={ 
+                name:"Priyanshu kumar"
+          };
+        setUserName(data.name);
+        },[])
         return (
+        <UserContext.Provider value={{loggedInUser : userName ,  setUserName}}>
                 <>
                  <Header />
                  <Outlet />
                 </>
+        </UserContext.Provider>         
         )
 }
 const appRouter = createBrowserRouter([

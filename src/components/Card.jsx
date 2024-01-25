@@ -1,7 +1,10 @@
 import { IMG_URL } from "../utils/constant";
+import { useContext } from "react";
+import UserContext from "../utils/userContext";
 
-const Card = (props) => {
-    const { restData } = props;
+const Card = ({restData ,login}) => {
+
+    const {loggedInUser} = useContext(UserContext);
     const {name , cuisines , cloudinaryImageId , avgRatingString , costForTwo} = restData.info;
     return (
       
@@ -17,6 +20,7 @@ const Card = (props) => {
         <h2>{cuisines.join(", ")}</h2>
         <h2>{costForTwo}</h2>
         <h2>Rating : {avgRatingString}</h2>
+        <h5 className="text-sm font-normal">User : {login === "LOGOUT"?loggedInUser:"Default User"}</h5>
       </div>
     );
   };

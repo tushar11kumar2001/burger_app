@@ -10,6 +10,7 @@ const RestaurantMenu = () => {
   const restInfo = useRestaurantMenu(restId);
   const [showIndex, setShowIndex] = useState(null);
   // console.log("param",restId);
+  const dummy = "dummy data";
   
 
   if (restInfo === null) return <Shimmar />;
@@ -46,6 +47,7 @@ const RestaurantMenu = () => {
             data={category?.card?.card}
             showItems = {idx === showIndex? true:false}
             setShowIndex ={()=> setShowIndex(idx != showIndex? idx : null)}
+            dummy = {dummy}
           />
         );
       })}

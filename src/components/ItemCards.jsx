@@ -1,7 +1,7 @@
 import { IMG_URL } from "../utils/constant";
-const ItemCards = ({itemsList})=>{
- 
-    console.log("items.data.itemsCard" , itemsList)
+const ItemCards = ({itemsList,dummy})=>{
+    console.log("dummy" , dummy);
+    // console.log("items.data.itemsCard" , itemsList)
     return(
         <div>
             {itemsList.map((item)=>{

@@ -1,7 +1,7 @@
 import ItemCards from "./ItemCards";
 import NestedCategory from "./NestedCategory";
 
-const RestaurantCategory = ({ data, showItems , setShowIndex}) => {
+const RestaurantCategory = ({ data, showItems , setShowIndex ,dummy}) => {
   // console.log("data" , data);
 
   const handleclick = () => {
@@ -30,7 +30,7 @@ const RestaurantCategory = ({ data, showItems , setShowIndex}) => {
 
       {data?.["@type"] ===
       "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory" ? (
-        showItems && <ItemCards itemsList={data?.itemCards} />
+        showItems && <ItemCards itemsList={data?.itemCards} dummy = {dummy}/>
       ) : (
         <NestedCategory nestedCategories={data?.categories} />
       )}
