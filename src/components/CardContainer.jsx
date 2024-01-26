@@ -1,6 +1,6 @@
-import Card , {withPromotedLabel}from "./Card";
+import Card, { withPromotedLabel } from "./Card";
 // import useRestaurantList from "../utils/useRestaurantList";
-import { useState, useEffect , useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import Shimmar from "./Fackcard";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
@@ -13,8 +13,8 @@ const CardContainer = () => {
   const [searchText, setsearchText] = useState("");
   const [btnName, setbtnName] = useState("LOGIN");
   const [copyList, setcopyList] = useState([]);
-  const PromotedRestaurant = withPromotedLabel(Card);//higher order component..
-  const {loggedInUser , setUserName} = useContext(UserContext);
+  const PromotedRestaurant = withPromotedLabel(Card); //higher order component..
+  const { loggedInUser, setUserName } = useContext(UserContext);
   // console.log("logindata" , loggedInUser);
 
   useEffect(() => {
@@ -26,14 +26,14 @@ const CardContainer = () => {
     );
     const json = await api.json();
     // console.log("json = ", json);
-    // console.log("json.data.cards",json.data.cards)
-    const list =    json?.data?.cards.filter((top)=>(top?.card?.card?.id ==="restaurant_grid_listing"));
-    // console.log("latest list",list);
+    console.log("json.data.cards",json.data.cards)
+    const list = json?.data?.cards.filter(
+      (top) => top?.card?.card?.id === "restaurant_grid_listing" || 
+               top?.card?.card?.id === "top_brands_for_you"
+    );
+    console.log("latest list",list);
     setcardData2(list[0].card.card.gridElements.infoWithStyle.restaurants);
     setcopyList(list[0].card.card.gridElements.infoWithStyle.restaurants);
-
-   
-
   };
 
   //conditional rendering
@@ -80,9 +80,17 @@ const CardContainer = () => {
         </div>
 
         <div>
-            <label >User : </label>
-            <input type="text" id="user" className="p-1 border border-black rounded-lg" value={loggedInUser} onChange={(e)=>{setUserName(e.target.value)}} />
-          </div>
+          <label>User : </label>
+          <input
+            type="text"
+            id="user"
+            className="p-1 border border-black rounded-lg"
+            value={loggedInUser}
+            onChange={(e) => {
+              setUserName(e.target.value);
+            }}
+          />
+        </div>
 
         <div>
           <button
@@ -107,7 +115,7 @@ const CardContainer = () => {
           >
             {btnName}
           </button>
-          <h3>{btnName === "LOGOUT" ? loggedInUser : ""}</h3>
+          <h3 className="text-end mr-2">{btnName === "LOGOUT" ? loggedInUser : ""}</h3>
         </div>
       </div>
 
@@ -118,8 +126,11 @@ const CardContainer = () => {
             to={"/restaurants/" + resturant.info.id}
             key={resturant.info.id}
           >
-            {resturant.info.avgRatingString > 4 ? <PromotedRestaurant restData={resturant} login={btnName}/>:<Card restData={resturant} login ={btnName}/>}
-            {" "}
+            {resturant.info.avgRatingString > 4 ? (
+              <PromotedRestaurant restData={resturant} login={btnName} />
+            ) : (
+              <Card restData={resturant} login={btnName} />
+            )}{" "}
           </Link>
         ))}
       </div>

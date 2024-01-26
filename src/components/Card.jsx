@@ -30,10 +30,10 @@ const Card = ({restData ,login}) => {
   export const withPromotedLabel = (Card)=>{
     return (props)=>{
       return(
-        <>
-        <div className="bg-red-500 absolute rounded-l">Promoted</div>
+        <div className="hover:scale-95">
+        <div className="bg-red-500 absolute rounded-l z-50 ">Promoted</div>
         <Card {...props}/>
-        </>
+        </div>
       )
     }
   }

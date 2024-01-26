@@ -11,7 +11,10 @@ import RestaurantMenu from './components/RestaurantMenu';
 import {createBrowserRouter,Outlet,RouterProvider} from 'react-router-dom';
 import { useState } from 'react';
 import UserContext from './utils/userContext';
-import User from './components/User';
+// import User from './components/User';
+import { Provider } from 'react-redux';
+import appStore from './redux/appStore';
+// import CartItems from './components/CartItems';
 
 
 //chunking
@@ -21,6 +24,7 @@ import User from './components/User';
 //on demand loading
 const Grocery = lazy(()=>import("./components/Grocery")); //dynamic loading
 const About = lazy(()=>import("./components/About")); //dynamic loading
+const CartItems = lazy(()=>import('./components/CartItems'))
 
 
 const AppLayout = ()=>{
@@ -34,12 +38,14 @@ const AppLayout = ()=>{
         setUserName(data.name);
         },[])
         return (
+        <Provider store={appStore}>
         <UserContext.Provider value={{loggedInUser : userName ,  setUserName}}>
                 <>
                  <Header />
                  <Outlet />
                 </>
-        </UserContext.Provider>         
+        </UserContext.Provider> 
+        </Provider>        
         )
 }
 const appRouter = createBrowserRouter([
@@ -62,6 +68,10 @@ const appRouter = createBrowserRouter([
                         {
                                 path:"/grocery",
                                 element: <Suspense fallback={<h1>loading</h1>}><Grocery /></Suspense>
+                        },
+                        {
+                                path:"/cart",
+                                element: <Suspense fallback={<h1>loading</h1>}> <CartItems/></Suspense> 
                         },
                         {
                                 path:"/restaurants/:restId",
