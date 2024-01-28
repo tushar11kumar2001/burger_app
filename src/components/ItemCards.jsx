@@ -1,13 +1,13 @@
 import { IMG_URL } from "../utils/constant";
-import {useDispatch, useSelector } from "react-redux";
-import { add  } from "../redux/cartSlice";
+import {useDispatch} from "react-redux";
+import { add , addRestaurantName } from "../redux/cartSlice";
 const ItemCards = ({ itemsList, dummy }) => {
 //   console.log("dummy", dummy);
 const dispatch = useDispatch();
-// const handleItems = ()=>{
-//     //dispatch an action 
-//     dispatch(add("pizza"));
-// }
+const handleItems = (item)=>{
+    //dispatch an action 
+    dispatch(add(item));
+}
 
   // console.log("items.data.itemsCard" , itemsList)
   return (
@@ -45,7 +45,7 @@ const dispatch = useDispatch();
               />
               <button 
               className="absolute left-2/4 bottom-0 translate-x-[-50%] px-5 py-1 border border-gray-500 rounded-lg text-green-500 text-center font-bold bg-white"
-              onClick={()=> dispatch(add(item))}
+              onClick={()=> handleItems(item)}
               >
                 ADD+
               </button>

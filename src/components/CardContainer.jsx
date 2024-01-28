@@ -24,14 +24,15 @@ const CardContainer = () => {
     const api = await fetch(
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.705882&lng=77.2785876&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
+    // console.log("api",api); 
     const json = await api.json();
     // console.log("json = ", json);
-    console.log("json.data.cards",json.data.cards)
+    // console.log("json.data.cards",json.data.cards)
     const list = json?.data?.cards.filter(
       (top) => top?.card?.card?.id === "restaurant_grid_listing" || 
                top?.card?.card?.id === "top_brands_for_you"
     );
-    console.log("latest list",list);
+    // console.log("latest list",list);
     setcardData2(list[0].card.card.gridElements.infoWithStyle.restaurants);
     setcopyList(list[0].card.card.gridElements.infoWithStyle.restaurants);
   };
@@ -120,7 +121,7 @@ const CardContainer = () => {
       </div>
 
       <div className="flex justify-between flex-wrap w-4/5  mx-auto bg-[rgb(245,245,220)] p-6  ">
-        <h1></h1>
+    
         {copyList.map((resturant) => (
           <Link
             to={"/restaurants/" + resturant.info.id}
